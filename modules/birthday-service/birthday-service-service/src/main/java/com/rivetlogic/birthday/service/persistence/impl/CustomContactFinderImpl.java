@@ -1,21 +1,5 @@
 package com.rivetlogic.birthday.service.persistence.impl;
 
-import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
-import com.liferay.portal.kernel.dao.orm.QueryPos;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
-import com.liferay.portal.kernel.dao.orm.SQLQuery;
-import com.liferay.portal.kernel.dao.orm.Session;
-import com.liferay.portal.kernel.dao.orm.SessionFactory;
-import com.liferay.portal.kernel.exception.SystemException;
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.model.Contact;
-import com.liferay.portal.kernel.service.persistence.impl.BasePersistenceImpl;
-import com.liferay.portal.kernel.util.GetterUtil;
-import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
-import com.liferay.portal.dao.orm.custom.sql.CustomSQLUtil;
-import com.rivetlogic.birthday.service.persistence.CustomContactFinder;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,8 +11,23 @@ import java.util.Map;
 
 import org.joda.time.DateTime;
 
+import com.liferay.portal.dao.orm.custom.sql.CustomSQLUtil;
+import com.liferay.portal.kernel.bean.PortalBeanLocatorUtil;
+import com.liferay.portal.kernel.dao.orm.QueryPos;
+import com.liferay.portal.kernel.dao.orm.QueryUtil;
+import com.liferay.portal.kernel.dao.orm.SQLQuery;
+import com.liferay.portal.kernel.dao.orm.Session;
+import com.liferay.portal.kernel.dao.orm.SessionFactory;
+import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.Contact;
+import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.PortalClassLoaderUtil;
+import com.rivetlogic.birthday.service.persistence.CustomContactFinder;
 
-public class CustomContactFinderImpl extends BasePersistenceImpl<Contact> implements CustomContactFinder{
+
+public class CustomContactFinderImpl extends CustomContactFinderBaseImpl implements CustomContactFinder{
 
 	
 	@SuppressWarnings("unchecked")
@@ -42,7 +41,10 @@ public class CustomContactFinderImpl extends BasePersistenceImpl<Contact> implem
         	SessionFactory  sessionFactory = (SessionFactory)PortalBeanLocatorUtil.locate(LIFERAY_SESSION_FACTORY);
         	session = sessionFactory.openSession();
             result = new ArrayList<Contact>();
-            String sql =  CustomSQLUtil.get(getClass(), getQueryName(SQL_BIRTHDAYS_BY_DATE_BASE));
+            String queryName = getQueryName(SQL_BIRTHDAYS_BY_DATE_BASE);
+            LOGGER.debug("query name="+queryName);
+            String sql =  CustomSQLUtil.get(getClass(), queryName);
+            LOGGER.debug("SQL="+sql);
             SQLQuery q = session.createSQLQuery(sql);
             q.addEntity(CONTACT_ENTITY, PortalClassLoaderUtil.getClassLoader().loadClass(CONTACT_IMPL_BINARY_NAME));
             QueryPos qPos = QueryPos.getInstance(q);
@@ -170,7 +172,8 @@ public class CustomContactFinderImpl extends BasePersistenceImpl<Contact> implem
             return result;
 
         } catch (Exception e) {
-        	LOGGER.error(String.format(ERROR_CONTACTS_BIRTHDAY_BY_WEEK, e.getMessage()));
+        	LOGGER.error(String.format(ERROR_CONTACTS_BIRTHDAY_BY_WEEK, e.getMessage())); //TODO Exception
+        	LOGGER.error(e);
             throw new SystemException(e);
         } finally {
             closeSession(session);
@@ -266,6 +269,7 @@ public class CustomContactFinderImpl extends BasePersistenceImpl<Contact> implem
 	}
 	
 	private String getQueryName(String baseStr){
+		baseStr = CustomContactFinder.class.getName() + '.' + baseStr; 
 		switch(getDB().getDBType()){
 		case SQLSERVER:
 			return baseStr + SQL_QUERY_SUFFIX;

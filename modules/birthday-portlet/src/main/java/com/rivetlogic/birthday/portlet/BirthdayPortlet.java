@@ -40,7 +40,6 @@ import org.osgi.service.component.annotations.Component;
 		property = {
 				"com.liferay.portlet.display-category=category.gadgets",
 				"com.liferay.portlet.instanceable=true",
-				"javax.portlet.display-name=Birthday",
 				"javax.portlet.init-param.template-path=/",
 				"javax.portlet.init-param.view-template=/birthday/view.jsp",
 				"javax.portlet.init-param.help-template=/help.jsp",

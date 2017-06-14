@@ -29,9 +29,6 @@
                     <div id="p_p_id_portlet-search" class="portlet-birthdays portlet-boundary portlet-draggable yui3-dd-drop yui3-dd-draggable">
                         <span></span> 
                         <section class="portlet">
-                            <header class="portlet-topper">
-                                <h1 class="portlet-title"> <span class="portlet-title-text portlet-title-editable">Birthdays</span> </h1>
-                            </header>
                             <div class="portlet-content">
                                 <div class=" portlet-content-container" style="">
                                     <div class="portlet-body">

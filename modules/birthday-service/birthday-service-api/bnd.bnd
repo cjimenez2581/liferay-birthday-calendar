@@ -10,5 +10,5 @@ Export-Package:\
 	com.rivetlogic.birthday.service.persistence
 -includeresource: META-INF/service.xml=../birthday-service-service/service.xml
 Import-Package: \
-	org.joda.*;resolution:=optional,\
+	!org.joda.time.*,\
 	*

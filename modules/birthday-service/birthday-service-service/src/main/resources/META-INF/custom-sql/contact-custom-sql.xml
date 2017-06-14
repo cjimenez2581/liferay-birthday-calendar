@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <custom-sql>
 
-<sql id="birthdaysByDate" >
+<sql id="com.rivetlogic.birthday.service.persistence.impl.CustomContactFinderImpl.birthdaysByDate" >
 <![CDATA[
 SELECT
  {Contact_.*}
@@ -15,7 +15,7 @@ ORDER BY firstName
 ]]>
 </sql>
 
-<sql id="birthdaysByWeek_leapYear">
+<sql id="com.rivetlogic.birthday.service.persistence.impl.CustomContactFinderImpl.birthdaysByWeek_leapYear">
 SELECT * FROM (
 SELECT
 	Cont.*,
@@ -31,7 +31,7 @@ OR
 </sql>
 
 
-<sql id="birthdaysByWeek">
+<sql id="com.rivetlogic.birthday.service.persistence.impl.CustomContactFinderImpl.birthdaysByWeek">
 SELECT * FROM (
 SELECT
 	Cont.*,
@@ -47,14 +47,14 @@ OR
 ((? != ?) AND ((birthmonth = ? AND   ? >= birthdate) OR (birthmonth = ? AND birthdate >= ?)))
 )
 </sql>
-<sql id="birthdaysByMonth">
+<sql id="com.rivetlogic.birthday.service.persistence.impl.CustomContactFinderImpl.birthdaysByMonth">
 SELECT
  {Contact_.*}
 FROM Contact_ WHERE
 ((EXTRACT(MONTH FROM birthday) = ?) AND (EXTRACT(DAY FROM birthday) >= ? AND ? >= EXTRACT(DAY FROM birthday)))
 ORDER BY EXTRACT(DAY FROM birthday)
 </sql>
-<sql id="upcomingBirthday" >
+<sql id="com.rivetlogic.birthday.service.persistence.impl.CustomContactFinderImpl.upcomingBirthday" >
 SELECT * FROM (
 SELECT
 	Cont.*,
@@ -71,7 +71,7 @@ END
 DESC
 </sql>
         
-<sql id="groupedDaysByMonth_leapYear">
+<sql id="com.rivetlogic.birthday.service.persistence.impl.CustomContactFinderImpl.groupedDaysByMonth_leapYear">
  SELECT
 	 COUNT(EXTRACT(DAY FROM birthday)), 
 	 EXTRACT(DAY FROM birthday)
@@ -81,7 +81,7 @@ DESC
  WHERE (status != 5 AND (EXTRACT(MONTH FROM birthday) = ?))
  GROUP BY EXTRACT(DAY FROM birthday)
 </sql>
-<sql id="groupedDaysByMonth">
+<sql id="com.rivetlogic.birthday.service.persistence.impl.CustomContactFinderImpl.groupedDaysByMonth">
  SELECT
 	 COUNT(EXTRACT(DAY FROM birthday)),
 	 EXTRACT(DAY FROM birthday)
@@ -97,7 +97,7 @@ DESC
 
 <!-- SQL Server queries -->
 
-<sql id="birthdaysByDate_sqlserver" >
+<sql id="com.rivetlogic.birthday.service.persistence.impl.CustomContactFinderImpl.birthdaysByDate_sqlserver" >
 <![CDATA[
 SELECT
  *
@@ -112,7 +112,7 @@ ORDER BY firstName
 </sql>
 
 
-<sql id="birthdaysByWeek_leapYear_sqlserver">
+<sql id="com.rivetlogic.birthday.service.persistence.impl.CustomContactFinderImpl.birthdaysByWeek_leapYear_sqlserver">
 SELECT * FROM (
 SELECT
 	Cont.*,
@@ -128,7 +128,7 @@ OR
 </sql>
 
 
-<sql id="birthdaysByWeek_sqlserver">
+<sql id="com.rivetlogic.birthday.service.persistence.impl.CustomContactFinderImpl.birthdaysByWeek_sqlserver">
 SELECT * FROM (
 SELECT
 	Cont.*,
@@ -145,14 +145,14 @@ OR
 )
 </sql>
 
-<sql id="birthdaysByMonth_sqlserver">
+<sql id="com.rivetlogic.birthday.service.persistence.impl.CustomContactFinderImpl.birthdaysByMonth_sqlserver">
 SELECT
  *
 FROM Contact_ WHERE
 ((DATEPART (MONTH, birthday) = ?) AND (DATEPART (DAY, birthday) >= ? AND ? >= DATEPART (DAY, birthday)))
 ORDER BY DATEPART (DAY, birthday)
 </sql>
-<sql id="upcomingBirthday_sqlserver" >
+<sql id="com.rivetlogic.birthday.service.persistence.impl.CustomContactFinderImpl.upcomingBirthday_sqlserver" >
 SELECT * FROM (
 SELECT
 	Cont.*,
@@ -169,7 +169,7 @@ END
 DESC
 </sql>
         
-<sql id="groupedDaysByMonth_leapYear_sqlserver">
+<sql id="com.rivetlogic.birthday.service.persistence.impl.CustomContactFinderImpl.groupedDaysByMonth_leapYear_sqlserver">
  SELECT
 	 COUNT(DATEPART (DAY, birthday)) AS counter,
 	 DATEPART (DAY, birthday) AS dayNum
@@ -179,7 +179,7 @@ DESC
  WHERE (status != 5 AND (DATEPART (MONTH, birthday) = ?))
  GROUP BY DATEPART (DAY, birthday)
 </sql>
-<sql id="groupedDaysByMonth_sqlserver">
+<sql id="com.rivetlogic.birthday.service.persistence.impl.CustomContactFinderImpl.groupedDaysByMonth_sqlserver">
  SELECT
 	 COUNT(DATEPART (DAY, birthday)) AS counter,
 	 DATEPART (DAY, birthday) AS dayNum
