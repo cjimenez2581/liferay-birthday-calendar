@@ -11,8 +11,8 @@ taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 <%@ page import="com.liferay.portal.kernel.util.ParamUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.PortalUtil" %>
 
+<liferay-frontend:defineObjects />
 <liferay-theme:defineObjects />
-
 <portlet:defineObjects />
 
 <c:set var="pns" scope="request"><portlet:namespace /></c:set>

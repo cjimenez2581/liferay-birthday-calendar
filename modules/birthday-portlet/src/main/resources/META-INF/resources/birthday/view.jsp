@@ -38,16 +38,16 @@
                                         
                                         <!-- content -->
                                         <select name="view-mode" class="view-mode" autocomplete="off">
-                                            <option value="day" selected="selected">Daily</option>
-                                            <option value="week">Weekly</option>
-                                            <option value="month">Monthly</option>
+                                            <option value="day" selected="selected"><liferay-ui:message key="daily"/></option>
+                                            <option value="week"><liferay-ui:message key="weekly"/></option>
+                                            <option value="month"><liferay-ui:message key="monthly"/></option>
                                         </select>
                                         <ul class="pager">
                                             <li class="previous">
-                                                <a href="#">&larr; Prev</a>
+                                                <a href="#">&larr; <liferay-ui:message key="prev"/></a>
                                             </li>
                                             <li class="next">
-                                                <a href="#">Next &rarr;</a>
+                                                <a href="#"><liferay-ui:message key="next"/> &rarr;</a>
                                             </li>
                                         </ul>
                                         <div class="bday-view-container">
@@ -104,9 +104,9 @@
                                             <div class="bottom-box text-center">
                                                 {{#if empty}}
                                                 <p>
-                                                    There are no birthdays to show this {{viewMode}}
+                                                    <liferay-ui:message arguments="{{viewMode}}" key="no-birthdays-to-show-this-x"/> 
                                                     <br>
-                                                    <a data-upcoming="{{upcomingDate}}" href="javascript:void(0)" class="upcoming"><u>see upcoming date</u></a>
+                                                    <a data-upcoming="{{upcomingDate}}" href="javascript:void(0)" class="upcoming"><u><liferay-ui:message key="see-upcoming-date"/></u></a>
                                                 </p>
                                                 {{/if}}
                                             </div>
@@ -123,7 +123,7 @@
                                         </script>
                                         <script id="bday-show-more" class="bday-show-more" type="text/x-handlebars-template">
                                             <p>
-                                                <a href="" class="show-more"><u>Show more</u></a>
+                                                <a href="" class="show-more"><u><liferay-ui:message key="show-more"/></u></a>
                                             </p>
                                         </script>
                                         
