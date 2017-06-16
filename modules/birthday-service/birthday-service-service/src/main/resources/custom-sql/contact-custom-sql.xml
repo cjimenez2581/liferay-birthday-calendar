@@ -27,7 +27,7 @@ SELECT
 WHERE
 ((birthmonth >= ?) AND (birthdate >= ?) AND (? >= birthmonth) AND (? >= birthdate))
 OR
-(? = 'true' AND ((birthmonth = ? AND ? >= birthdate) OR (birthmonth = ? AND birthdate >= ?)))
+(? AND ((birthmonth = ? AND ? >= birthdate) OR (birthmonth = ? AND birthdate >= ?)))
 </sql>
 
 
@@ -44,7 +44,7 @@ WHERE
 (birthdate != 29 OR birthmonth != 2) AND (
 ((birthmonth >= ?) AND (birthdate >= ?) AND (? >= birthmonth) AND (? >= birthdate))
 OR
-((? = 'true') AND ((birthmonth = ? AND   ? >= birthdate) OR (birthmonth = ? AND birthdate >= ?)))
+(? AND ((birthmonth = ? AND   ? >= birthdate) OR (birthmonth = ? AND birthdate >= ?)))
 )
 </sql>
 <sql id="com.rivetlogic.birthday.service.persistence.CustomContactFinder.birthdaysByMonth">

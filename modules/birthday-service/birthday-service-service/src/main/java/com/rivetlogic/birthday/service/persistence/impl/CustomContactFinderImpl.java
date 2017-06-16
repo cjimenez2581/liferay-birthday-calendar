@@ -1,6 +1,7 @@
 package com.rivetlogic.birthday.service.persistence.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -153,12 +154,14 @@ public class CustomContactFinderImpl extends CustomContactFinderBaseImpl impleme
             result = new ArrayList<Contact>();
             String sql =  CustomSQLUtil.get(
             		getClass(), 
-            		getQueryName(isCurrentYearLeap() ? SQL_BIRTHDAYS_BY_WEEK_LEAP_YEAR : SQL_BIRTHDAYS_BY_WEEK));
+            		getQueryName(isLeapYear(year1) ? SQL_BIRTHDAYS_BY_WEEK_LEAP_YEAR : SQL_BIRTHDAYS_BY_WEEK));
+            LOGGER.debug("SQL="+sql);
             SQLQuery q = session.createSQLQuery(sql);
             q.addEntity(CONTACT_ENTITY, PortalClassLoaderUtil.getClassLoader().loadClass(CONTACT_IMPL_BINARY_NAME));
             
             QueryPos qPos = QueryPos.getInstance(q);
-            Object values[] = {month1, day1, month2, day2, String.valueOf(month1 != month2), month2, day2, month1, day1};
+            Object values[] = {month1, day1, month2, day2, new Boolean(month1 != month2), month2, day2, month1, day1};
+            LOGGER.debug(Arrays.toString(values));
             for(Object value : values){
             	 qPos.add(value);
             }
@@ -192,6 +195,7 @@ public class CustomContactFinderImpl extends CustomContactFinderBaseImpl impleme
         	session = sessionFactory.openSession();
             result = new ArrayList<Contact>();
             String sql =  CustomSQLUtil.get(getClass(), getQueryName(SQL_BIRTHDAYS_BY_MONTH_BASE));
+            LOGGER.debug("SQL="+sql);
             SQLQuery q = session.createSQLQuery(sql);
             q.addEntity(CONTACT_ENTITY, PortalClassLoaderUtil.getClassLoader().loadClass(CONTACT_IMPL_BINARY_NAME));
             
@@ -255,12 +259,6 @@ public class CustomContactFinderImpl extends CustomContactFinderBaseImpl impleme
             closeSession(session);
         }
         
-	}
-	
-	private boolean isCurrentYearLeap(){
-		Calendar calendar = Calendar.getInstance(); 
-		calendar.setTime(new Date());
-		return isLeapYear(calendar.get(Calendar.YEAR));
 	}
 	
 	private boolean isLeapYear(int year){
