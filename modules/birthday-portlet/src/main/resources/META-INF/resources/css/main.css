@@ -1,13 +1,4 @@
-.portlet-birthdays .portlet-topper {
-    background: #428bca;
-}
-
-.portlet-birthdays .portlet-content {
-    border: 1px solid #428bca;
-    border-top-width: 0;
-}
 .portlet-birthdays .view-mode {
-    max-width: 330px;
     width: 100%;
 }
 
@@ -21,7 +12,6 @@
 
 .bday-view-container {
     height: 300px;
-    overflow: auto;
 }
 
 .portlet-birthdays .top-box {
@@ -114,10 +104,18 @@
     border-radius: 0;
 }
 
+.portlet-birthdays .accordionized .content li a.bday-person {
+ 	cursor: pointer;
+ }
+
 .portlet-birthdays .accordionized .content li:first-child a {
     border-top: none;
 }
 
 .portlet-birthdays .accordionized .content li:last-child a {
     border-bottom: none;
+}
+
+.portlet-birthdays .bday-view-container .nav-tabs > li.active:last-child > a, .portlet-birthdays .bday-view-container .nav-tabs > li.active:last-child > a:hover, .portlet-birthdays .bday-view-container .nav-tabs > li.active:last-child > a:focus {
+	border-bottom-color: #D8D8D8; /* Should reflect AUIs theme color */
 }
