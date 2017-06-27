@@ -1,0 +1,14 @@
+Bundle-Name: Birthday Calendar API
+Bundle-SymbolicName: com.rivetlogic.birthday.service.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.rivetlogic.birthday.results,\
+	com.rivetlogic.birthday.service,\
+	com.rivetlogic.birthday.service.exception,\
+	com.rivetlogic.birthday.service.model,\
+	com.rivetlogic.birthday.service.service,\
+	com.rivetlogic.birthday.service.persistence
+-includeresource: META-INF/service.xml=../birthday-service-service/service.xml
+Import-Package: \
+	!org.joda.time.*,\
+	*
