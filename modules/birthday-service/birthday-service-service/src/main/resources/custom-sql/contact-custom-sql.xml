@@ -65,8 +65,8 @@ FROM Contact_ Cont
  INNER JOIN User_ UserRecord
  ON (Contact.contactId=UserRecord.contactId AND UserRecord.status != 5)
 ORDER BY CASE
-    WHEN  (? > birthmonth OR (? = birthmonth AND ? >= birthdate)) THEN (1200 - birthmonth*100 + birthdate)
-    ELSE (11200 - birthmonth*100 + birthdate)
+    WHEN  (? > birthmonth OR (? = birthmonth AND ? >= birthdate)) THEN (1231 - birthmonth*100 - birthdate)
+    ELSE (11231 - birthmonth*100 - birthdate)
 END
 DESC
 </sql>
