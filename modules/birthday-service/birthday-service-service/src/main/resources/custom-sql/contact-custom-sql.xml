@@ -5,13 +5,20 @@
 <![CDATA[
 SELECT
  {Contact_.*}
-FROM Contact_ WHERE
+FROM Contact_
+INNER JOIN
+ User_ UserRecord
+ON
+ (Contact_.contactId=UserRecord.contactId
+ AND UserRecord.status != 5
+ AND UserRecord.defaultUser = 0)
+WHERE
 (
 (EXTRACT(DAY FROM birthday) = ?)
 and
 (EXTRACT(MONTH FROM birthday) = ?)
 )
-ORDER BY firstName
+ORDER BY Contact_.firstName
 ]]>
 </sql>
 
@@ -24,6 +31,10 @@ SELECT
 	EXTRACT(DAY FROM birthday) AS birthdate
 	FROM Contact_ Cont
 ) Contact
+INNER JOIN User_ ON
+ (Contact.contactId=User_.contactId
+ AND User_.status != 5
+ AND User_.defaultUser = 0)
 WHERE
 ((birthmonth >= ?) AND (birthdate >= ?) AND (? >= birthmonth) AND (? >= birthdate))
 OR
@@ -40,6 +51,10 @@ SELECT
 	EXTRACT(DAY FROM birthday) AS birthdate
 FROM Contact_ Cont
 ) Contact
+ INNER JOIN User_ ON
+ (Contact.contactId=User_.contactId
+ AND User_.status != 5
+ AND User_.defaultUser = 0)
 WHERE
 (birthdate != 29 OR birthmonth != 2) AND (
 ((birthmonth >= ?) AND (birthdate >= ?) AND (? >= birthmonth) AND (? >= birthdate))
@@ -63,7 +78,9 @@ SELECT
 FROM Contact_ Cont
 ) Contact
  INNER JOIN User_ UserRecord
- ON (Contact.contactId=UserRecord.contactId AND UserRecord.status != 5)
+ ON (Contact.contactId=UserRecord.contactId
+ AND UserRecord.status != 5
+ AND UserRecord.defaultUser = 0)
 ORDER BY CASE
     WHEN  (? > birthmonth OR (? = birthmonth AND ? >= birthdate)) THEN (1231 - birthmonth*100 - birthdate)
     ELSE (11231 - birthmonth*100 - birthdate)
@@ -77,7 +94,8 @@ DESC
 	 EXTRACT(DAY FROM birthday)
  FROM Contact_ Cont
  INNER JOIN User_ UserRecord
- ON (Cont.contactId=UserRecord.contactId)
+ ON (Cont.contactId=UserRecord.contactId
+     AND UserRecord.defaultUser = 0)
  WHERE (status != 5 AND (EXTRACT(MONTH FROM birthday) = ?))
  GROUP BY EXTRACT(DAY FROM birthday)
 </sql>
@@ -87,7 +105,8 @@ DESC
 	 EXTRACT(DAY FROM birthday)
  FROM Contact_ Cont
  INNER JOIN User_ UserRecord
- ON (Cont.contactId=UserRecord.contactId)
+ ON (Cont.contactId=UserRecord.contactId
+     AND UserRecord.defaultUser = 0)
  WHERE
  (29 != EXTRACT(DAY FROM birthday) OR 2 != EXTRACT(MONTH FROM birthday))
  AND
@@ -161,7 +180,9 @@ SELECT
 FROM Contact_ Cont
 ) Contact
  INNER JOIN User_ UserRecord
- ON (Contact.contactId=UserRecord.contactId AND UserRecord.status != 5)
+ ON (Contact.contactId=UserRecord.contactId
+ AND UserRecord.status != 5
+ AND UserRecord.defaultUser = 0)
 ORDER BY CASE
     WHEN  (? > birthmonth OR (? = birthmonth AND ? >= birthdate)) THEN (1000/birthmonth + 100/birthdate)
     ELSE (10000/birthmonth + 100/birthdate + 1000)
