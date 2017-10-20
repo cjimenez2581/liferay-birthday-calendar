@@ -334,7 +334,7 @@ YUI.add('birthday-portlet', function (Y, NAME) {
             self.set('lastRequestStr', dataString);
             
             this.requestData('', data, function(data) {
-            	
+
                 if (self.get('lastRequestStr') !== dataString) {
                     return;
                 }
@@ -378,7 +378,7 @@ YUI.add('birthday-portlet', function (Y, NAME) {
             self.set('lastRequestStr', dataString);
             
             this.requestData('', data, function(data) {
-            	
+
                 if (self.get('lastRequestStr') !== dataString) {
                     return;
                 }
@@ -419,7 +419,7 @@ YUI.add('birthday-portlet', function (Y, NAME) {
             self.set('lastRequestStr', dataString);
 
             this.requestData('', data, function(data) {
-            	
+
                 if (self.get('lastRequestStr') !== dataString) {
                     return;
                 }
@@ -506,6 +506,7 @@ YUI.add('birthday-portlet', function (Y, NAME) {
          */
         requestData: function(cmd, data, callback) {
             Y.io.request(this.get('resourceUrl') + cmd, {
+               cache: false,
                method: 'GET',
                data: data,
                dataType: 'json',
