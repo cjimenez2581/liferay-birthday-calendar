@@ -40,9 +40,9 @@
 .portlet-birthdays .bdays-info-container .bdays-info {
     color: #3085d1
 }
-
 .portlet-birthdays .bdays-info-label,
 .portlet-birthdays .bdays-info-biggie {
+    vertical-align: middle;
     float: left
 }
 
@@ -51,12 +51,12 @@
 }
 
 .portlet-birthdays .bdays-info-biggie {
+    width: 60px;
     background: #f6f6f6;
     border-right: 1px solid #e4e4e4;
     font-size: 4em;
     padding: 25px 0;
     text-align: center;
-    width: 100px;
     border-radius: 4px 0 0 4px
 }
 
@@ -120,4 +120,14 @@
 
 .portlet-birthdays .accordionized .content li:last-child a {
     border-bottom: none;
+}
+
+.portlet-birthdays .pager li {
+    display: inline-block;
+    width: 47%;
+    padding: 1%;
+}
+.portlet-birthdays .pager li > a {
+    width: 100%;
+    padding: 5px 0;
 }
