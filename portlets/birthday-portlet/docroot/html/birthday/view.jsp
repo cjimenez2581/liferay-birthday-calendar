@@ -47,10 +47,10 @@
                                         </select>
                                         <ul class="pager">
                                             <li class="previous">
-                                                <a href="#">&larr; Prev</a>
+                                                <a href="#"><i class="icon-chevron-left"></i> Prev</a>
                                             </li>
                                             <li class="next">
-                                                <a href="#">Next &rarr;</a>
+                                                <a href="#">Next <i class="icon-chevron-right"></i></a>
                                             </li>
                                         </ul>
                                         <div class="bday-view-container">
@@ -74,7 +74,7 @@
                                             <ul class="nav nav-tabs nav-stacked">
                                                 {{#each users}}
                                                 <li class="active">
-                                                    <a href="javascript:void(0)" class="bday-person">
+                                                    <a href="{{profileURL}}" class="bday-person">
                                                         <img src="{{portrait}}" class="img-circle" alt="">
                                                         {{name}}
                                                     </a>
@@ -92,8 +92,8 @@
                                                     <ul class="content nav nav-tabs nav-stacked hidden">
                                                         {{#each users}}
                                                         <li class="active">
-                                                            <a href="javascript:void(0)" class="bday-person">
-                                                                <img src="{{portrait}}" class="img-circle" alt="">
+                                                            <a href="{{profileURL}}" class="bday-person">
+                                                                <img src="{{portrait}}" class="img-circle" alt="{{name}}'s Portrait">
                                                                 {{name}}
                                                             </a>
                                                         </li>

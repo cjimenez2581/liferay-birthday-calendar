@@ -9,6 +9,7 @@ public class UserBirthday {
 	private String name;
 	private Date userBirthday;
 	private String portrait;
+	private String profileURL;
 	
 	@JSON
 	public String getName() {
@@ -32,6 +33,14 @@ public class UserBirthday {
 	}
 	public void setPortrait(String portrait) {
 		this.portrait = portrait;
+	}
+
+	@JSON
+	public String getProfileURL() {
+		return profileURL;
+	}
+	public void setProfileURL(String profileURL) {
+		this.profileURL = profileURL;
 	}
 	
 }
