@@ -274,6 +274,16 @@ YUI.add('birthday-portlet', function (Y, NAME) {
                 self.set('viewMode', BirthdayPortlet.CONSTANTS.Daily);
                 self.set('currentDate', date);
             }, '.upcoming');
+
+
+            // go to today
+            this.one(VIEW_CONTAINER).delegate('click', function(e) {
+                e.preventDefault()
+                var date = new Date();
+                self.set('viewMode', BirthdayPortlet.CONSTANTS.Daily);
+                self.set('currentDate', date);
+            }, '.today');
+
         },
         
         /**
