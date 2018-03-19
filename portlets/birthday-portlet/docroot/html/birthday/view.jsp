@@ -60,6 +60,9 @@
                                         
                                         <!-- TEMPLATES -->
                                         <script id="bday-big-date" type="text/x-handlebars-template">
+                                            <p class="text-center">
+                                                <a href="javascript:void(0)" class="today"><u>see today</u></a>
+                                            </p>
                                             <div class="bdays-info-container">
                                                 <div class="bdays-info clearfix">
                                                     <div class="bdays-info-biggie"> {{day}}</div>
